@@ -1,13 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Root } from './Root';
+import { Details, loader as detailsLoader, action as detailsAction } from './Details';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root></Root>,
+    children: [
+      {
+        path: '',
+        element: <a href='/details'>Go to the details page</a>,
+      },
+      {
+        path: 'details',
+        element: <Details></Details>,
+        loader: detailsLoader,
+        action: detailsAction,
+      }
+    ]
+  },
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
