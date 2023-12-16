@@ -21,6 +21,7 @@ app.get('/fileList', (req, res) => {
 
 app.post('/upload', upload.single('file'), (req, res) => {
     console.log(req.body.pw , req.file);
+    fs.rename(req.file.path, `${req.file.destination}/${req.file.originalname}`, () => {});
     res.send('File uploaded');
 });
 
