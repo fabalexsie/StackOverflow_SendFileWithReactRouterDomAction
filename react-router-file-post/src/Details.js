@@ -25,7 +25,7 @@ export function Details() {
         formData.append('file', file);
         formData.append('pw', "InRealityComesFromSomeOtherInput");
         console.log("Formdata in handle upload", formData); // here the file is the file object
-        fetcher.submit(formData, {method: 'POST', action: '/details'})
+        fetcher.submit(formData, {method: 'POST', action: '/details', encType: 'multipart/form-data'})
     }
 
     return (
